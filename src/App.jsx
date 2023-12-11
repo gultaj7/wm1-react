@@ -1,13 +1,13 @@
 import { useState } from "react"
 
 export default function App() {
-  const useState("")
+  const [newItem, addNewItem] = useState("")
   return (
     <>
       <form className="item-form">
         <div className="form">
           <label htmlFor="item">insert new item</label>
-          <input type="text" id="item"/>
+          <input value={newItem} type="text" id="item"/>
         </div>
         <button className="button">add</button>
       </form>
