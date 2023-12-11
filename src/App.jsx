@@ -2,12 +2,22 @@ import { useState } from "react"
 
 export default function App() {
   const [newItem, addNewItem] = useState("")
+
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
+  
   return (
     <>
-      <form className="item-form">
+      <form onSubmit={handleSubmit} className="item-form">
         <div className="form">
           <label htmlFor="item">insert new item</label>
-          <input value={newItem} onChange={e => addNewItem(e.target.value)} type="text" id="item"/>
+          <input 
+            value={newItem} 
+            onChange={e => addNewItem(e.target.value)}
+            type="text" 
+            id="item"
+          />
         </div>
         <button className="button">add</button>
       </form>
