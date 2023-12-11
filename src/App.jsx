@@ -2,11 +2,20 @@ import { useState } from "react"
 
 export default function App() {
   const [newItem, addNewItem] = useState("")
+  const [todo, addTodo] = useState([])
 
   function handleSubmit(e) {
     e.preventDefault()
-  }
-  
+
+    setTodos(currentTodo => {
+      return [
+        ...currentTodo,
+        { id: crypto.randomUUID(), title: newItem, completed: false },
+      ]
+    })
+    }
+
+
   return (
     <>
       <form onSubmit={handleSubmit} className="item-form">
