@@ -1,3 +1,1 @@
-# To Do List 
-
-http://localhost:5173/? 
+# To Do List
