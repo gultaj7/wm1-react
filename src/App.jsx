@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export default function App() {
-  const [newItem, addNewItem] = useState("")
+  const [newItem, setNewItem] = useState("")
   const [todos, setTodos] = useState([])
 
   function handleSubmit(e) {
@@ -13,7 +13,20 @@ export default function App() {
         { id: crypto.randomUUID(), title: newItem, completed: false },
       ]
     })
+    setNewItem("")
     }
+
+  function toggleTodo(id, completed) {
+    setTodos(currentTodos => {
+      return currentTodos.map(todo => {
+        if(todo.id === id) {
+          return { ...todo, completed }
+        }
+
+        return todo
+      })
+    })
+  }
 
 
   return (
@@ -23,7 +36,7 @@ export default function App() {
           <label htmlFor="item">insert new item</label>
           <input 
             value={newItem} 
-            onChange={e => addNewItem(e.target.value)}
+            onChange={e => setNewItem(e.target.value)}
             type="text" 
             id="item"
           />
@@ -36,7 +49,9 @@ export default function App() {
           return (
             <li key={todo.id}>
           <label htmlFor="">
-            <input type="checkbox" checked={todo.completed} />
+            <input type="checkbox" 
+            checked={todo.completed} 
+            onChange={e => toggleTodo(todo.id, e.target.checked)}/>
             {todo.title}
           </label>
           <button className="delete">Delete</button>
